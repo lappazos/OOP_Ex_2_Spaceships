@@ -1,0 +1,72 @@
+lioraryepaz
+
+=============================
+=  File description - EX2   =
+=============================
+SpaceShip.java - an abstract super class for all types of spaceships
+SpaceShipFactory.java - responsible for creating the different types of spaceships instances
+RunnerSpaceShip.java - type of spaceship
+BasherSpaceShip.java - type of spaceship
+AggressiveSpaceShip.java - type of spaceship
+DrunkardSpaceShip.java - type of spaceship
+SpecialSpaceShip.java - type of spaceship
+HumanSpaceShip.java - type of spaceship
+
+
+=============================
+=          Design           =
+=============================
+SpaceWars is the main class that runs the game. In addition, SpaceShipFactory in charge of creating the different
+instances of the different spaceships types (sub-classes).
+
+SpaceShip is an abstract class - but most of the methods and attributes are implemented there. all types of spaceships
+are sub-classes of SpaceShip.
+doAction is also implemented there. every action in doAction sequence was translated into 'methodCheck' method,
+which returns default value in the abstract class. every sub-class runs over only the 'methodCheck' methods which she
+needs (each in her own way).
+So, the sub-classes basically only run over the 'methodCheck' functions, and thats how the difference between them is
+expressed.
+
+I chose to perform my code that way because its very easy to extend new kinds of spaceship sub-classes that way - The
+API is definitely minimal that way, and also gives option to sub-class to implement only one 'methodCheck' func, and
+the rest will work properly and wont crash, as in its default values in the abstract class.
+its very understandable for every programmer that will approach my code - hell just need to implement a few simple &
+short methodCheck methods, and he can easily create a new sub-class.
+
+its also makes a lot of sense in the logic connections between classes - the spaceships are very similar in the
+majority of their qualities, and different only in some commanding matters, in the way they are controlled - direction,
+acceleration, fire & shields, teleport.
+all of the types have the ability to perform all, but we chose to implement each type with different behaviour.
+that is why it make sense that all will be sub-class of one super abstract class, and will only need to the deal with
+minimal methods as possible - only control & command methods.
+
+By the way, i would use private modifiers for a lot of the public methods you requested from us - i didn't understand
+why is there the need to declare all of them as public and stick to it.
+
+
+
+=============================
+=  Implementation details   =
+=============================
+all of the 'checkMethods' were very simple and short, and received only game object as argument, that sometimes wasn't
+even necessary. as mentioned above, do action was fully implemented in the super abstract SpaceShip class.
+
+regarding SpecialSpaceShip - i needed to stick with one closest spaceship object throughout the entire game - the ideal
+was to implement this using a constructor which receives game object as an argument - which wasn't possible due to
+the inability to modify SpaceWars.
+Due to this reason, i performed a patch which is slightly not perfect - but it works perfectly and doesn't add any
+additional runtime.
+
+regarding DrunkardSpaceShip - this was the only sub-class which i ran over doAction method - because i needed to
+declare on two course of actions - drunk & not drunk.
+
+
+=============================
+=    Answers to questions   =
+=============================
+
+1) The SpecialSpaceShip tracks the closest spaceship in his first moment of birth in the first round, and then will
+purse, shoot and bash only him throughout the entire game, even if he dies and rebirth - he is his sworn enemy.
+
+2) The DrunkardSpaceShip stupidly tries to bash other spaceships without shields on - and every rand time (not too long)
+begins to spin in a circle for a rand time (not too long). very drunk driver
